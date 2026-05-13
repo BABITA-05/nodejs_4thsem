@@ -1,0 +1,6 @@
+user request-> middleware-> route identify(match)-> handler function call-> response to user
+
+response:
+send->text
+json->json/object
+status->code
