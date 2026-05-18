@@ -1,6 +1,12 @@
-user request-> middleware-> route identify(match)-> handler function call-> response to user
+// user request-> middleware-> route identify(match)-> handler function call-> response to user
 
-response:
-send->text
-json->json/object
-status->code
+// response:
+// send->text
+// json->json/object
+// status->code
+
+
+// API Routes:
+// array storage:
+
+// new folder- usera api- get all users-envirnonment-create-new environment(first nodejs.env)-varibale-baseUrl value:localhost:8080 {(baseUrl)}/users

@@ -5,46 +5,57 @@
 import express from "express";
 import dotenv from "dotenv"
 import { initialRouteHandler, getAllUsersHandler, handlerCreateUser, handlerCalculate } from "./handlers.js";
+import { CreateUser, DeleteUser, GetAllUsers, GetUserById } from "./controller/user_handler.js";
 
 //loading .env
 dotenv.config()
+
 let app = express()
 
 //middleware for body parse so the json body gets converted
 app.use(express.json())
 
 //getting port from env
-let PORT = process.env.PORT
+let PORT = process.env.PORT || 8080
 
 //creating route
 app.get("/", initialRouteHandler);
-app.get("/users", getAllUsersHandler)
+//users route
+app.get("/users", GetAllUsers)
+app.get("/user/:id", GetUserById)
+app.post("/users", CreateUser)
+app.put("/user/:id", DeleteUser)
+app.delete("/user/:id", DeleteUser)
 
-app.post(
-    "/user/create", handlerCreateUser
-)
 
-app.post(
-    "/calculate", handlerCalculate
-)
 
-app.get(
-    "/multiply", (req, res)=>{
-        let data = req.body
+// app.get("/users", getAllUsersHandler)
 
-        let a = data.a
-        let b = data.b
-        let result = a * b
-        let resData = {
-            "message":"multiplied successfully",
-            data: result
-        }
-        res.status(200).json(resData)
-    }
-)
+// app.post(
+//     "/user/create", handlerCreateUser
+// )
+
+// app.post(
+//     "/calculate", handlerCalculate
+// )
+
+// app.get(
+//     "/multiply", (req, res)=>{
+//         let data = req.body
+
+//         let a = data.a
+//         let b = data.b
+//         let result = a * b
+//         let resData = {
+//             "message":"multiplied successfully",
+//             data: result
+//         }
+//         res.status(200).json(resData)
+//     }
+// )
 
 
 //creating server
-app.listen(8080, ()=>{
-    console.log("server started on port 8080")
+app.listen(PORT, ()=>{
+    console.log(`server started to listen at localhost: ${PORT}`)
 });
