@@ -14,6 +14,7 @@ let app = express()
 
 //middleware for body parse so the json body gets converted
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 //getting port from env
 let PORT = process.env.PORT || 8080

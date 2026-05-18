@@ -1,5 +1,6 @@
 import AllUsers from "../data/users_data.js"
 
+
 let GetAllUsers = (req, res)=>{
     let resData = {
         "message":"All users fetched successfully",
@@ -17,7 +18,34 @@ let GetUserById = (req, res)=>{
 
 }
 let CreateUser = (req, res)=>{
-    
+    let reqData = req.body
+    if(!reqData){
+        res.status(400).json({
+            message:"bad request"
+        })
+        return
+    }
+
+    let email = reqData.email
+    let name = reqData.name
+    let newData = {
+        id:AllUsers.length+1,
+
+    }
+    if(email){
+        newData.email = email
+    }
+    if(name){
+        newData.name = name
+    }
+    //adding new data to array
+    AllUsers.push(newData)
+    let resData = {
+        message:"user created successfully",
+        data:AllUsers
+    }
+    //send json data to users with created status code )201
+    res.status(201).json(resData)
 }
 let UpdateUser= (req, res)=>{
     
