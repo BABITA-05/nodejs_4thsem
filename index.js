@@ -5,7 +5,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import { initialRouteHandler, getAllUsersHandler, handlerCreateUser, handlerCalculate } from "./handlers.js";
-import { CreateUser, DeleteUser, GetAllUsers, GetUserById } from "./controller/user_handler.js";
+import { CreateUser, DeleteUser, GetAllUsers, GetUserById, UpdateUser } from "./controller/user_handler.js";
 
 //loading .env
 dotenv.config()
@@ -25,7 +25,7 @@ app.get("/", initialRouteHandler);
 app.get("/users", GetAllUsers)
 app.get("/user/:id", GetUserById)
 app.post("/users", CreateUser)
-app.put("/user/:id", DeleteUser)
+app.put("/user/:id", UpdateUser)
 app.delete("/user/:id", DeleteUser)
 
 
