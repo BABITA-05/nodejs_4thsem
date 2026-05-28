@@ -10,3 +10,10 @@
 // array storage:
 
 // new folder- usera api- get all users-envirnonment-create-new environment(first nodejs.env)-varibale-baseUrl value:localhost:8080 {(baseUrl)}/users
+
+
+
+//podman 
+podman compose up
+
+install extension postgres

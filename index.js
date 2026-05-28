@@ -6,6 +6,7 @@ import express from "express";
 import dotenv from "dotenv"
 import { initialRouteHandler, getAllUsersHandler, handlerCreateUser, handlerCalculate } from "./handlers.js";
 import { CreateUser, DeleteUser, GetAllUsers, GetUserById, UpdateUser } from "./controller/user_handler.js";
+import { pool } from "./database/db.js";
 
 //loading .env
 dotenv.config()
@@ -20,7 +21,19 @@ app.use(express.urlencoded({ extended: true }));
 let PORT = process.env.PORT || 8080
 
 //creating route
-app.get("/", initialRouteHandler);
+app.get(
+    "/",
+    async ( req, res)=>{
+        let result = await pool.query('SELECT * FROM users')
+        console.log("All users:", result.rows)
+        res.json({
+            message:"successfully fetched all users",
+            data:result.rows
+        })
+    } 
+
+);
+
 //users route
 app.get("/users", GetAllUsers)
 app.get("/user/:id", GetUserById)

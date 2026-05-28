@@ -1,7 +1,9 @@
 import AllUsers from "../data/users_data.js"
 
 
-let GetAllUsers = (req, res)=>{
+let GetAllUsers = async(req, res)=>{
+    let rsult = await pool.query("Select * from users")
+    let usersFromDatabase = Result.rows
     let resData = {
         "message":"All users fetched successfully",
         "data": AllUsers,
